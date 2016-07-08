@@ -1,0 +1,45 @@
+<html>
+<head>
+<script>
+var random,target_index, target, guess_input;
+var finished=false;
+var count=0;
+var colors=new array(8);
+
+function do_game() {
+random=Math.random()*8;
+target_index=Math.floor(random);
+colors=["Black","Cyan","Green","Magenta","Orange","Purple","Red","Yellow",];
+target=colors[target_index];
+while(!finished) {
+guess_input=prompt("I am thinking of these colors:\n\n"+colors.join(", ")+
+"\n\nWhat color am I thinking of?");
+count++;
+check_guess();
+}
+}
+
+function check_guess() {
+if(colors.indexOf(guess_input)==-1)
+alert("Color not on my list");
+else if(guess_input==target) {
+alert("Congratulations! Your guess is right.")
+myBody=document.getElementsByTagName("body")[0];
+myBody.style.background=target;
+finished=true;
+alert("You took "+count+" guesses!");
+}
+else if(guess_input>target) {
+alert("Your color is alphabetically higher than mine!");
+finished=false;
+}
+else if(guess_input<target) {
+alert("Your color is alphabetically lower than mine!");
+finished=false;
+}
+}
+</script>
+</head>
+<body onload="do_game()">
+</body>
+</html>
